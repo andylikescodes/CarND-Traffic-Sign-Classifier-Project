@@ -16,18 +16,6 @@ The goals / steps of this project are the following:
 * Analyze the softmax probabilities of the new images
 * Summarize the results with a written report
 
-
-[//]: # (Image References)
-
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
-
 ## Rubric Points
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
 
@@ -101,9 +89,9 @@ To train the model, I used the Adam optimizer. I set the batch size to 128, trai
 ####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
 My final model results were:
-* training set accuracy of
-* validation set accuracy of
-* test set accuracy of ?
+* training set accuracy of 0.998
+* validation set accuracy of 0.954
+* test set accuracy of 0.940
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
@@ -142,31 +130,61 @@ Here are the results of the prediction:
 
 | Image			        |     Prediction	        					|
 |:---------------------:|:---------------------------------------------:|
-| Stop Sign      		| Stop sign   									|
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| 4,Speed limit (70km/h)      		| 4,Speed limit (70km/h)   									|
+| 14,Stop    			| 14,Stop 										|
+| 18,General caution					| 18,General caution											|
+| 3,Speed limit (60km/h)	      		| 18,General caution 				 				|
+| 28,Children crossing			| 28,Children crossing     							|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. The testing accuracy is 0.940 which is higher than the accuracy of the five web traffic signs.
 
 ####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
 The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+For the first image, the model is relatively sure that this is a stop sign (probability of 0.9), and the image does contain a speed limit (70km/h). The top five soft max probabilities were
+| Probability         	|     Prediction	        					|
+|:---------------------:|:---------------------------------------------:|
+| .900         			| 4,Speed limit (70km/h)   									|
+| .091     				| 18,General caution 										|
+| .001					| 31,Wild animals crossing											|
+| .000	      			| 39,Keep left					 				|
+| .000				    | 25,Road work     							|
+
+
+For the second image, the model is relatively sure that this is a stop sign (probability of 0.995), and the image does contain stop sign. The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					|
 |:---------------------:|:---------------------------------------------:|
-| .60         			| Stop sign   									|
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| .995         			| 14,Stop   									|
+| .004     				| 1,Speed limit (30km/h) 										|
+| .000					| 4,Speed limit (70km/h)										|
+| .000	      			| 0,Speed limit (20km/h)					 				|
+| .000			    | 33,Turn right ahead      							|
 
 
-For the second image ...
+For the Third image, the model is 100% sure this is a general caution sign.
+
+| Probability         	|     Prediction	        					|
+|:---------------------:|:---------------------------------------------:|
+| 1.000         			| 18,General caution  									|
+
+For the fourth image, which we predicted wrong, the model is relatively sure that this is a general caution sign (probability of 0.929), and the actual image is a Speed limit (60km/h). The top five soft max probabilities were
+
+| Probability         	|     Prediction	        					|
+|:---------------------:|:---------------------------------------------:|
+| .929         			| 18,General caution   									|
+| .058     				| 31,Wild animals crossing (30km/h) 										|
+| .012					| 20,Dangerous curve to the right (70km/h)										|
+| .000	      			| 29,Bicycles crossing (20km/h)					 				|
+| .000			    | 23,Slippery road     							|
+
+For the fifth image, the model is 100% sure the traffic sign is Children Crossing and it is correct.
+
+| Probability         	|     Prediction	        					|
+|:---------------------:|:---------------------------------------------:|
+| 1.000         			| 28,Children crossing   									|
 
 ### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
 ####1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
